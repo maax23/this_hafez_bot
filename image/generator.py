@@ -27,8 +27,8 @@ def make_story_image(title_num:str, text:str, user:User):
         str: Path to the generated image file.
     """
     BLACK = (0, 0, 0)
-    font = ImageFont.truetype('src/font/Nian.ttf', 35)
-    title = ImageFont.truetype(f'src/font/Nian-Black.ttf', 50)
+    font = ImageFont.truetype('src/font/YekanBakh-SemiBold.ttf', 25)
+    title = ImageFont.truetype(f'src/font/YekanBakh-Bold.ttf', 50)
 
     text = text.split('\n')[:4]
     
@@ -47,7 +47,7 @@ def make_story_image(title_num:str, text:str, user:User):
     TEXT.text((half_width - int(get_text_size(title_text, title)//2), int(length//3)), title_text, BLACK, font=title)
 
     lines = {
-        'first': text[0],
+        'first': arabic_reshaper.reshape(text[0]),
         'second': arabic_reshaper.reshape(text[1]),
         'third': arabic_reshaper.reshape(text[2]),
         'fourth': arabic_reshaper.reshape(text[3]),
@@ -82,8 +82,11 @@ def make_image(title_num:str, text:str, user:User):
         str: Path to the generated image file.
     """
     BLACK = (0, 0, 0)
-    font = ImageFont.truetype('src/font/Nian.ttf', 40)
-    title = ImageFont.truetype(f'src/font/Nian-Black.ttf', 50)
+    # font = ImageFont.truetype('src/font/Nian.ttf', 40)
+    # title = ImageFont.truetype(f'src/font/Nian-Black.ttf', 50)
+
+    font = ImageFont.truetype('src/font/YekanBakh-SemiBold.ttf', 30)
+    title = ImageFont.truetype(f'src/font/YekanBakh-Bold.ttf', 50)
 
     text = text.split('\n')[:4]
 
@@ -110,12 +113,12 @@ def make_image(title_num:str, text:str, user:User):
     }
 
     # The first bit
-    TEXT.text((half_width + 30, int(length//3)+50), arabic_reshaper.reshape(text[0]), BLACK, font=font)
-    TEXT.text((half_width - get_text_size(text[1], font) - 30, int(length//3)+60), arabic_reshaper.reshape(text[1]), BLACK, font=font)
+    TEXT.text((half_width + 20, int(length//3)+80), arabic_reshaper.reshape(text[0]), BLACK, font=font)
+    TEXT.text((half_width - get_text_size(text[1], font) - 20, int(length//3)+100), arabic_reshaper.reshape(text[1]), BLACK, font=font)
 
     # # The second bit
-    TEXT.text((half_width + 30, int(length//3)+150), arabic_reshaper.reshape(text[2]), BLACK, font=font)
-    TEXT.text((half_width - get_text_size(text[3], font) - 30, int(length//3)+160), arabic_reshaper.reshape(text[3]), BLACK, font=font)
+    TEXT.text((half_width + 20, int(length//3)+170), arabic_reshaper.reshape(text[2]), BLACK, font=font)
+    TEXT.text((half_width - get_text_size(text[3], font) - 20, int(length//3)+190), arabic_reshaper.reshape(text[3]), BLACK, font=font)
 
     image.save('image.jpg', quality=80)
     return 'image.jpg'

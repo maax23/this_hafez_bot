@@ -1,6 +1,7 @@
 from services.poems import get_poem
 from keyboards import philolearn_keyboard
-from utils.text import get_caption, to_persian_digits
+from utils.text import to_persian_digits
+from utils.time import is_yalda
 
 def handle_tabir(bot, call):
     omen = call.data.split("-")[1]
@@ -14,7 +15,7 @@ def handle_tabir(bot, call):
     text = (
         f"* - غزل {to_persian_digits(omen)} *\n"
         f"{poem[2].replace('---', '')}"
-        f"{get_caption()}"
+        '\n🍉🍉 @this\\_hafez\\_bot 🍉🍉' if is_yalda() else '\n@this\\_hafez\\_bot'
     )
 
     bot.send_message(
