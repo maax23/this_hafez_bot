@@ -27,7 +27,7 @@ def make_story_image(title_num:str, text:str, user:User):
         str: Path to the generated image file.
     """
     BLACK = (0, 0, 0)
-    font = ImageFont.truetype('src/font/Nian.ttf', 40)
+    font = ImageFont.truetype('src/font/Nian.ttf', 35)
     title = ImageFont.truetype(f'src/font/Nian-Black.ttf', 50)
 
     text = text.split('\n')[:4]
@@ -47,7 +47,7 @@ def make_story_image(title_num:str, text:str, user:User):
     TEXT.text((half_width - int(get_text_size(title_text, title)//2), int(length//3)), title_text, BLACK, font=title)
 
     lines = {
-        'first': arabic_reshaper.reshape(text[0]),
+        'first': text[0],
         'second': arabic_reshaper.reshape(text[1]),
         'third': arabic_reshaper.reshape(text[2]),
         'fourth': arabic_reshaper.reshape(text[3]),

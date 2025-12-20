@@ -53,7 +53,7 @@ def start(message):
                 philolearn_button()
             )
 
-            bot.send_message(message.chat.id, text.read(), reply_markup=markup, parse_mode="MarkDown")
+            bot.send_message(message.chat.id, text.read().encode('utf-8'), reply_markup=markup, parse_mode="MarkDown")
     
     else:
         with open('text/defaul', 'r') as text:
@@ -62,7 +62,7 @@ def start(message):
                 philolearn_button()
             )
             
-            bot.send_message(message.chat.id, text.read(), reply_markup=markup, parse_mode="MarkDown")
+            bot.send_message(message.chat.id, text.read().encode('utf-8'), reply_markup=markup, parse_mode="MarkDown")
 
 
 @bot.message_handler(commands=['fall'])
